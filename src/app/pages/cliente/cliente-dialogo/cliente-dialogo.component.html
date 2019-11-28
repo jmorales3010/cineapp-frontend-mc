@@ -1,0 +1,59 @@
+  <mat-grid-list cols="3" rowHeight="290px">
+    <mat-grid-tile>
+      <div class="cliente_controles">
+        <div style="text-align: center;"><h2><u>DATOS PERSONALES</u></h2></div><br/>
+        <mat-form-field>
+          <input matInput placeholder="Apellidos" [(ngModel)]="cliente.apellidos" required>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="Nombres" [(ngModel)]="cliente.nombres" type="text" required>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Fecha Nacimiento" [(ngModel)]="cliente.fechaNac">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <!-- <input matInput placeholder="Fecha Nacimiento" [(ngModel)]="cliente.fechaNac" type="text"> -->
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput placeholder="DNI" [(ngModel)]="cliente.dni" type="tel">
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="cliente_controles">
+        <div style="text-align: center;"><h2><u>DATOS DEL USUARIO</u></h2></div><br/>
+        <mat-form-field>
+          <input matInput placeholder="Nombre de Usuario" [(ngModel)]="usuario.nombre" [readonly]="!nuevo" [required]="nuevo">
+        </mat-form-field>
+        
+        <form [formGroup]="form" #frmUsuario="ngForm">
+          <mat-form-field>
+            <input matInput type="password" name="password" placeholder="Contraseña" formControlName="password" [readonly]="!nuevo" [required]="nuevo">
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input matInput type="password" placeholder="Repetir contraseña" formControlName="confirmPassword" [readonly]="!nuevo" [required]="nuevo">
+          </mat-form-field>
+  
+          <button mat-raised-button style="margin-top: 5px;margin-right: 5px; height: 35px;" color="primary" (click)="operar()" [disabled]="frmUsuario.invalid">Aceptar</button>
+          <button mat-raised-button style="margin-top: 5px;margin-right: 5px; height: 35px;" color="accent" (click)="cancelar()">Cancelar</button>
+        </form>
+      </div>
+    </mat-grid-tile>
+    
+    <mat-grid-tile>
+      <div class="cliente_controles">
+        <div style="text-align: center;"><h2><u>IMAGEN</u></h2></div><br/>
+        <div style="text-align: center;">
+          <button mat-stroked-button style="margin-bottom: 12px;" onclick="document.getElementById('flArchivo').click()">Seleccionar archivo</button>
+          <input id="flArchivo" type="file" (change)="selectFile($event)"  style="display:none;">
+          <img mat-card-image [src]="imagenData" *ngIf="imagenEstado" width="50%" height="50%"/>
+          <p>{{labelFile}}</p>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>

@@ -1,0 +1,11 @@
+<div class="main-div">
+    <mat-card class="card">
+        <mat-card-header>
+        <!-- <div mat-card-avatar class="header-image"></div> -->
+        <mat-card-title> {{ usuario }}</mat-card-title>
+        <mat-card-subtitle>{{ perfil }}</mat-card-subtitle>
+        </mat-card-header>
+        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+        <img mat-card-image [src]="imagenData" *ngIf="imagenEstado" width="50%" height="50%"/>
+    </mat-card>
+</div>
